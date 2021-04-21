@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import django_heroku
-import os
 
+# Build pathimport django_heroku
+import os
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,9 +29,9 @@ SECRET_KEY = 'django-insecure-l#-xckj#e8(c=e!9slwmi6o8mu&myh%thn7jmudwk9)my7@j51
 # EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'adityamali.herokuapp.com']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -86,6 +87,9 @@ DATABASES = {
     }
 }
 
+import dj_database_url
+db_from_env = dj_databse_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
