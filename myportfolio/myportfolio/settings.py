@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import django_heroku
-import os
 
+# Build pathimport django_heroku
+import os
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,7 +31,11 @@ SECRET_KEY = 'django-insecure-l#-xckj#e8(c=e!9slwmi6o8mu&myh%thn7jmudwk9)my7@j51
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['*','http://localhost:3000']
+=======
+ALLOWED_HOSTS = []
+>>>>>>> 4e7a322b88d5492e2ffe80e6ebc353276b62e83a
 
 # Application definition
 
@@ -107,6 +112,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+import dj_database_url
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
