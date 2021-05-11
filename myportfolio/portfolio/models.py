@@ -27,10 +27,11 @@ class Services(models.Model):
 
 
 class Projects(models.Model):
+
     title = models.CharField(max_length=50)
-    image = models.URLField(max_length=200)
-    description = models.TextField()
-    preview = models.URLField(max_length=200)
+    imgUrl = models.URLField(max_length=200)
+    desc = models.TextField()
+    url = models.URLField(max_length=200)
 
     def __str__(self):
         return self.title

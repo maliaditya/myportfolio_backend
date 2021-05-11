@@ -1,8 +1,19 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions
-from .models import Services, Projects, Packages, Reviews ,FrontendTechnologies, BackendTechnologies
+from .models import Services, Projects, Packages, Reviews, FrontendTechnologies, BackendTechnologies
 from .serializers import (ServicesSerializer, PackagesSerializer, ProjectsSerializer,
-                          ReviewsSerializer , BackendTechnologiesSerializer, FrontendTechnologiesSerializer)
+                          ReviewsSerializer, BackendTechnologiesSerializer, FrontendTechnologiesSerializer)
+from .forms import ContactFormEmail
+from django.conf import settings
+from django.core.mail import send_mail
+
+
+def contact_send_email(request):
+    if request.method == 'GET':
+        form = ContactFormEmail
+    else:
+        form = ContactFormEmail(request.POST)
+        return render(request, 'contactpage.html', {'form': form})
 
 
 class ServicesList(generics.ListAPIView):

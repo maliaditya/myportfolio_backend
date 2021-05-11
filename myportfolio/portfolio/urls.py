@@ -4,7 +4,7 @@ from .views import (ServicesList, ServicesDetailView,
                     ProjectsList, ProjectsDetailView,
                     PackagesList, PackagesDetailView,
                     ReviewsList, ReviewsDetailView,
-                    FrontendTechnologiesList, BackendTechnologiesList)
+                    FrontendTechnologiesList, BackendTechnologiesList, contact_send_email)
 
 urlpatterns = [
     path('services/', ServicesList.as_view()),
@@ -21,6 +21,8 @@ urlpatterns = [
 
     path('frontend/', FrontendTechnologiesList.as_view()),
     path('backend/', BackendTechnologiesList.as_view()),
+
+    path('contact/', contact_send_email)
 
 ]
 

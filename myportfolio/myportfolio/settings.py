@@ -28,9 +28,9 @@ SECRET_KEY = 'django-insecure-l#-xckj#e8(c=e!9slwmi6o8mu&myh%thn7jmudwk9)my7@j51
 # EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'adityamali.herokuapp.com']
+ALLOWED_HOSTS = ['*','http://localhost:3000']
 
 # Application definition
 
@@ -43,10 +43,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'portfolio.apps.PortfolioConfig',
     'rest_framework',
+     'corsheaders',
 
+]
+CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+] # If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
+CORS_ORIGIN_REGEX_WHITELIST = [
+    'http://localhost:3000',
 ]
 
 MIDDLEWARE = [
+      'corsheaders.middleware.CorsMiddleware',  
+    'django.middleware.common.CommonMiddleware',  
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,7 +72,7 @@ ROOT_URLCONF = 'myportfolio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,3 +138,14 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
+
+#Gmail settings
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'adityamali33@gmail.com'
+EMAIL_HOST_PASSWORD = 'adicoool'
+
+CORS_ALLOW_ALL_ORIGINS=True 
