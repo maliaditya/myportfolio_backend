@@ -44,8 +44,19 @@ INSTALLED_APPS = [
     'portfolio.apps.PortfolioConfig',
     'rest_framework',
      'corsheaders',
+     'cloudinary',
 
 ]
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'YOUR CLOUDINARY CLOUD NAME',
+    'API_KEY': 'YUOR CLOUDINARY API KEY',
+    'API_SECRET': 'YOUR CLOUDINARY API SECRET KEY',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [

@@ -28,10 +28,10 @@ class Services(models.Model):
 
 class Projects(models.Model):
 
-    title = models.CharField(max_length=50)
-    imgUrl = models.URLField(max_length=200)
-    desc = models.TextField()
-    url = models.URLField(max_length=200)
+    title = models.CharField(max_length=50, null=True)
+    image = models.ImageField(upload_to='Portfolio/', null=True)
+    desc = models.TextField( null=True)
+    url = models.URLField(max_length=200, null=True)
 
     def __str__(self):
         return self.title
